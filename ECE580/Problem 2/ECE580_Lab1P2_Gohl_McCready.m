@@ -32,15 +32,24 @@
 % Use legend to identify curves
 
 %define variables
-syms t y1 y2 y3
 
-t = [0:0.01:20];
+
+%find delta t
+clear all;
+%only ocillating equation is y3 with a highest w of 12, per Nyquist the
+%minimum sampling rate is 1/(2*w)
+dt = 1/24;
+dt = dt * 0.01; %oversample for smoothing and to get y2 close to 8
+
+%set up t vector 0 to 20 with a Ts of 24
+t = [0:dt:20];
 
 %define equations
 %(a)
 y1 = 6.*(exp(-t/2));
 y2 = 12.*(exp((-0.25).*t));
 y3 = 12.*(exp(-t/4)).*cos(12.*t + (pi/3)) + 6.*(exp(-t/2));
+
 
 %Plot functions
 plot(t,y1, t,y2, t,y3); %set up plot
@@ -52,6 +61,24 @@ xlabel('Time(s)') %label x axis
 ylabel('y(t)') %label y axis
 xlim([0 15]) %set x axis limits
 ylim([-7 16])%set y axis limits
+
+clc %clear display
+
+%find y3(3) and y3(5) and display
+disp(['y3(3)=',num2str(y3(3))])
+disp(['y3(5)=',num2str(y3(5))])
+
+%find minimum and maximum values of y3(t)
+disp(['y3(t) maximum value is ',num2str(max(y3))])
+disp(['y3(t) minmum value is ',num2str(min(y3))])
+
+%find  t where y2(t) = 8
+y28 = min(abs(y2-8)); %find position of value closest to 8
+t8 = find(y2 == (y28+8)); %find the positon of the corresponding t
+y2at8 = t(t8); %find value of t
+disp(['y2(t) = ~8 [',num2str(y2(t8)),'] at t = ',num2str(y2at8)]) %display the value
+
+
 
 
 

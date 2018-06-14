@@ -41,9 +41,9 @@ ax.XLabel.String = 'Variable X, for real valued Y only';
 ax.XLabel.FontSize = 14; 
 ax.YLabel.String = 'Variable Y = f(X)'; 
 ax.YLabel.FontSize = 14; 
-title('Lab Assignment 1, Problem 1', 'FontSize'  16; 
-.FontWeight = 'bold';
-legend( 'Y = f(x) = 20\sqrt{\frac{(x - 15)(x + 30)}{(x - 15)^2 + 100)}}', 'Interpreter', 'latex')
+title('Lab Assignment 1, Problem 1', 'FontSize', 16, 'FontWeight', 'bold');
+l = legend( '$Y = f(x) = 20\sqrt{\frac{(x - 15)(x + 30)}{(x - 15)^2 + 100)}}$');
+set(l, 'interpreter', 'latex')
 %% Problem 1 (c)
 % Find the value of this maximum and the corresponding value of x at the maximum.
 dydx = diff(eqn2); 

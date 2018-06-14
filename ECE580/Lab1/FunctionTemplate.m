@@ -26,11 +26,15 @@ function [output1,output2] = function_name(input1,input2,input3)
 %
 % See also: OTHER_FUNCTION_NAME1,  OTHER_FUNCTION_NAME2
 
-% Author: Jonathan Grohl, Ph.D., physical oceanography
-% Maurice Lamontagne Institute, Dept. of Fisheries and Oceans Canada
-% email address: gilbertd@dfo-mpo.gc.ca  
-% Website: http://www.qc.dfo-mpo.gc.ca/iml/
-% June 2018; Last revision: XX--2004
+% Class:            ECE 580, Digital Signal Processing 
+% Assignment:       <Assignment>
+% Author:           Jonathan Gohl, Electrical Engineering M.S.E. Student
+% University of Michigan Dearborn, Electrical and Computer Engineering
+% email address:    jrgohl@umich.edu
+% Author:           Joshua McCready, Electrical Engineering M.S.E. Student
+% University of Michigan Dearborn, Electrical and Computer Engineering
+% email address:    jmccread@umich.edu
+% Month Year; Last revision: XX-Month-Year
 
 %------------- BEGIN CODE --------------
 

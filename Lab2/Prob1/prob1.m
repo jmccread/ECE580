@@ -73,7 +73,7 @@ ax = gca;
 ax.YLabel.String = 'x(n) = \delta(n)'; 
 ax.XLabel.FontSize = 14; 
 ax.YLabel.FontSize = 14; 
-title('Lab Assignment 1, Problem 1 (a): Impulse Repsonse', 'FontSize', 16, 'FontWeight', 'bold');
+title('Lab Assignment 2, Problem 1 (a): Impulse Repsonse', 'FontSize', 16, 'FontWeight', 'bold');
 subplot(2,1,2)
 stem(n(1:end),y(1:end), 'LineWidth', 2);
 hold on; 
@@ -103,7 +103,7 @@ ax = gca;
 ax.YLabel.String = 'x(n)=u(n-3)'; 
 ax.XLabel.FontSize = 14; 
 ax.YLabel.FontSize = 14; 
-title('Lab Assignment 1, Problem 1 (b): Shifted Step Repsonse', 'FontSize', 16, 'FontWeight', 'bold');
+title('Lab Assignment 2, Problem 1 (b): Shifted Step Repsonse', 'FontSize', 16, 'FontWeight', 'bold');
 subplot(2,1,2)
 stem(n(1:end),y(1:end), 'LineWidth', 2);
 hold on; 
@@ -134,7 +134,7 @@ ax = gca;
 ax.YLabel.String = 'x(n)=u(n)u(-n+21)'; 
 ax.XLabel.FontSize = 14; 
 ax.YLabel.FontSize = 14; 
-title('Lab Assignment 1, Problem 1 (c): Response to input', 'FontSize', 16, 'FontWeight', 'bold');
+title('Lab Assignment 2, Problem 1 (c): Response to input', 'FontSize', 16, 'FontWeight', 'bold');
 subplot(2,1,2)
 stem(n(1:end),y(1:end), 'LineWidth', 2);
 hold on; 
@@ -163,7 +163,7 @@ ax = gca;
 ax.YLabel.String = 'x(n)=r(n)-r(n-23)'; 
 ax.XLabel.FontSize = 14; 
 ax.YLabel.FontSize = 14; 
-title('Lab Assignment 1, Problem 1 (d): Response to input', 'FontSize', 16, 'FontWeight', 'bold');
+title('Lab Assignment 2, Problem 1 (d): Response to input', 'FontSize', 16, 'FontWeight', 'bold');
 subplot(2,1,2)
 stem(n(1:end),y(1:end), 'LineWidth', 2);
 hold on; 

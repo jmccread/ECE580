@@ -17,7 +17,7 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 % # Part a: Magnitude and Phase Response
 % # Part b: System Response to Input
 % # Part c: Steady State and Transient
-% # Part d: Steady State and Transient Periods
+% # Part d: Steady State and Transient Periods 
 % # Pard e: Spectra of Input and Output
 % 
 close all
@@ -59,10 +59,10 @@ x0 = 8*sin(w1*n-pi/3).*cos(w2*n-pi/4).*u(n);
 x1 = 4*(sin(A+B)+sin(A-B)).*u(n);
 x2 = 4*(cos(A+B+pi/2) +cos(A-B+pi/2)).*u(n);
 
-% figure
-% stem(n,x0, 'r', 'LineWidth', 2); hold on
-% stem(n,x1, 'b', 'LineWidth', 1); hold on
-% legend('given', 'sin sum');
+figure
+stem(n,x0, 'r', 'LineWidth', 2); hold on
+stem(n,x1, 'b', 'LineWidth', 1); hold on
+legend('given', 'sin sum');
 x = x0;
 y = filter(b,a, x);
 
@@ -95,10 +95,10 @@ I_p7pi = find(W == 0.7*pi); % Index for FResp value for 0.7pi
 % Use the fact that for steady state: y_ss = A|H(jw)|cos(wn+B+<H(jw))
 % for x = Acos(wn+B). 
  
-y_ss  = (abs(FResp(I_p7pi))*sin(A+B+ angle(FResp(I_p7pi)))...
-    +abs(FResp(I_p2pi))*sin(A-B + angle(FResp(I_p2pi))));
+y_ss  = 4*(abs(FResp(I_p7pi))*sin(A+B+ angle(FResp(I_p7pi)))...
+    -abs(FResp(I_p2pi))*sin(A-B + angle(FResp(I_p2pi))));
 fig = figure('units','normalized','outerposition',[0 0 0.95 0.95], 'Visible', 'on');
-
+y_tr = y-y_ss;
 subplot(2,1,1)
 stem(n, y_ss, 'LineWidth', 2);
 ax = gca; 
@@ -107,10 +107,9 @@ ax.XLabel.FontSize = 14;
 ax.YLabel.FontSize = 14; 
 title('Lab Assignment 2, Problem 5 (c): Steady State and Transient', 'FontSize', 16, 'FontWeight', 'bold');
 subplot(2,1,2)
+
 stem(n,(y-y_ss) , 'LineWidth', 2);
-hold on; 
-stem(n,y  , 'r', 'LineWidth', 1);
-hold off; 
+
 ax = gca; 
 ax.XLabel.String = 'Sample Index (n)'; 
 ax.XLabel.FontSize = 14; 
@@ -120,3 +119,28 @@ ax.YLabel.FontSize = 14;
 saveas(fig, 'Prob5c', 'png');
 
 %% Part d: Steady State and Transient Periods
+% Lets consider that the energy of the transient response after it has
+% "died" must be less than 0.05 of the total. 
+
+E_tr = sum(y_tr.^2); % calculate energy
+E_tr_cum = cumsum(y_tr.^2); % calculate cumulative sum of energy
+E_tr_cum_per = E_tr_cum/E_tr; % calculate decimal percentage 
+I_dead = find(1-E_tr_cum_per <= 0.05); % use find to see when <=5% energy remains
+I_dead(1) % First sample to reach steady state 
+
+%% Part e: Plot magnitude spectra of input and output
+fig = figure('units','normalized','outerposition',[0 0 0.95 0.95], 'Visible', 'on');
+%plot first half of DFT (normalised frequency)
+Y_mags = abs(fft(y));
+num_bins = length(Y_mags);
+stem([0:1/(num_bins/2 -1):1], Y_mags(1:num_bins/2), 'LineWidth',2),grid on;
+hold on;
+X_mags = abs(fft(x));
+num_bins = length(X_mags);
+stem([0:1/(num_bins/2 -1):1], X_mags(1:num_bins/2), 'LineWidth', 1)
+title('Magnitude spectrum of Input and Output');
+xlabel('Normalized frequency (\pi rads/sample)');
+ylabel('Magnitude');
+legend('Output y', 'Input x'); 
+
+saveas(fig, 'Prob5e', 'png');
